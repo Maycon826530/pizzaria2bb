@@ -5,8 +5,20 @@ const Produtos = () => {
     const [pizzas, setPizzas] = useState([])
 
     axios.get("http://172.19.0.49/pizzariaoficial/api/v1/produto")
-    .then(response=>setPizzas(response.data.data))
+    .then(response=>{
+        console.log(response.data)
+        setPizzas(response.data)
+    })
+    .catch(erros=>{console.log(erros)})
+useEffect(()=>{
+axios.get("http://172.19.0.49/pizzariaoficial/api/v1/produto")
+    .then(response=>{
+        console.log(response.data)
+        setPizzas(response.data)
+    })
+    .catch(erros=>{console.log(erros)})
 
+}, [])
     // Mapeamento das pizzas da lista (iteração)
     const listaPizzas = pizzas.map(pizza =>
                     <li key={pizza.id}>{pizza.nome}</li>);
